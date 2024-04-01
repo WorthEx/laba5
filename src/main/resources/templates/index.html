@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<meta charset="UTF-8">
+	<title>Main page</title>
+	<link href="" rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+  </head>
+  <body>
+	<div class="container container-fluid min-vh-100 d-flex flex-column px-5">
+	  <div class="d-flex flex-column flex-grow-1 align-items-center justify-content-center">
+		<h1 class="text-center mb-4 fw-normal user-select-none">Select entities to control:</h1>
+		<div class="button-container d-flex flex-column gap-4 w-100">
+		  <a class="btn btn-primary fs-3" th:href="@{/masters}">Masters</a>
+		  <a class="btn btn-primary fs-3" th:href="@{/repair-works}">Repair works</a>
+		  <a class="btn btn-primary fs-3" th:href="@{/work-stages}">Work stages</a>
+		</div>
+	  </div>
+	</div>
+	<!--	<script th:src="@{/scripts/script.js}"></script>-->
+  </body>
+</html>

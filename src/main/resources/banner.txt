@@ -1,0 +1,8 @@
+ __   __        __         _   _     _____
+ \ \  \ \      / /__  _ __| |_| |__ | ____|_  __
+  \ \  \ \ /\ / / _ \| '__| __| '_ \|  _| \ \/ /
+  / /   \ V  V / (_) | |  | |_| | | | |___ >  <
+ /_/     \_/\_/ \___/|_|   \__|_| |_|_____/_/\_\
+${spring.application.name}: ${server.port}
+Powered by Spring Boot ${spring-boot.version}
+Woah this text is actually editable!
