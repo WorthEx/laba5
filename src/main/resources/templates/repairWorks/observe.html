@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<meta charset="UTF-8">
+	<title>Repair Works</title>
+	<link href="" rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" type="text/css">
+
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+  </head>
+  <body>
+	<div class="container container-fluid px-5">
+	  <!--/*@thymesVar id="saveMessage" type="flash message text"*/-->
+	  <div class="alert alert-success text-center mt-4" th:if="${saveMessage}" th:text="${saveMessage}"/>
+	  <!--/*@thymesVar id="deleteMessage" type="flash message text"*/-->
+	  <div class="alert alert-danger text-center mt-4" th:if="${deleteMessage}" th:text="${deleteMessage}"/>
+	  <table class="table table-bordered user-select-none">
+		<thead class="table-header table-dark">
+		  <tr>
+			<th>ID</th>
+			<th>Work title</th>
+			<th>Cost</th>
+			<th>Repair days</th>
+			<th>Master id</th>
+			<th>Action</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <th:block th:each="rw: ${repairWorks}">
+			<tr>
+			  <td th:text="${rw.getId()}"></td>
+			  <td th:text="${rw.getWorkTitle()}"></td>
+			  <td th:text="${rw.getCost()}"></td>
+			  <td th:text="${rw.getRepairDays()}"></td>
+			  <td th:text="${rw.getMaster().getId()}"></td>
+			  <td class="action-buttons d-flex flex-column gap-1">
+				<a class="btn btn-primary" th:href="@{/masters/edit/{id}(id=${rw.getId()})}"
+				   th:text="Edit"></a>
+				<form th:action="@{/masters/{id}(id=${rw.getId()})}" th:method="DELETE">
+				  <input class="btn btn-danger" th:value="Delete"
+						 type="submit">
+				</form>
+			  </td>
+			</tr>
+		  </th:block>
+		</tbody>
+	  </table>
+	  <a class="btn btn-primary fs-4" th:href="@{/masters/new}">Register a new master</a>
+	  <a class="btn btn-outline-primary btn-outline fs-4 mt-4" th:href="@{/}">Go home</a>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
+	<script th:src="@{/scripts/script.js}"></script>
+  </body>
+</html>

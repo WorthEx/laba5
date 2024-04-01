@@ -41,8 +41,4 @@ public class MasterService {
         }
         throw new EntityNotFoundException("Master with this id could not be found.");
     }
-
-    public String cmth() {
-        return "";
-    }
 }

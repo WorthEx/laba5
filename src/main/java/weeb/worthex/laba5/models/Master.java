@@ -3,16 +3,19 @@ package weeb.worthex.laba5.models;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "masters")
 public class Master {
     @Id
@@ -30,16 +33,16 @@ public class Master {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hiring_date;
 
-    public Master() {
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "master")
+    private List<RepairWork> repairWorks;
 
-    public Master(String surname, String name, String patronymic, int rank, Date hiring_date) {
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.rank = rank;
-        this.hiring_date = hiring_date;
-    }
+//    public Master(String surname, String name, String patronymic, int rank, Date hiring_date) {
+//        this.surname = surname;
+//        this.name = name;
+//        this.patronymic = patronymic;
+//        this.rank = rank;
+//        this.hiring_date = hiring_date;
+//    }
 
     public String getHiringDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
