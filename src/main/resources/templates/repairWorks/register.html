@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<meta charset="UTF-8">
+	<title>Add repair work</title>
+	<link href="" rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+  </head>
+  <body>
+	<div class="container container-fluid min-vh-100 d-flex flex-column px-5">
+	  <div class="d-flex flex-column flex-grow-1 align-items-center justify-content-center">
+		<h1 class="text-center fw-normal user-select-none">Enter new master's data.</h1>
+		<form class="needs-validation w-100"
+			  method="post" novalidate
+			  th:action="@{/repair-works/save}" th:method="POST" th:object="${rw}">
+		  <div class=" mb-3">
+			<label for="workTitle">Work title</label>
+			<input class="form-control mt-1" id="workTitle" placeholder="Work title" required th:field="*{workTitle}"
+				   th:type="text"/>
+			<div class="invalid-feedback">
+			  Provide a work title.
+			</div>
+		  </div>
+		  <div class=" mb-3">
+			<label for="cost">Cost</label>
+			<input class="form-control mt-1" id="cost" min="1" placeholder="Cost($)" required th:field="*{cost}"
+				   type="number"/>
+			<div class="invalid-feedback">
+			  Provide a cost of repair work.
+			</div>
+		  </div>
+		  <div class=" mb-3">
+			<label for="repairDays">Repair days</label>
+			<input class="form-control mt-1" id="repairDays" max="11000" min="1" placeholder="Repair days" required
+				   th:field="*{repairDays}" type="number"/>
+			<div class="invalid-feedback">
+			  Please select a valid number of repair days.
+			</div>
+		  </div>
+		  <div class=" mb-3">
+			<label for="master">Master</label>
+			<select aria-label="Default select example" class="form-select mt-1" id="master" required
+					th:field="*{master}">
+			  <option selected value="">Select master</option>
+			  <option th:each="master : ${masters}" th:text="${master.getShortName()}"
+					  th:value="${master.getId()}"></option>
+			</select>
+			<div class="invalid-feedback">
+			  Please select a registered master.
+			</div>
+		  </div>
+		  <div class="d-flex gap-2">
+			<button class="btn btn-success" th:type="submit">Register</button>
+			<a class="btn btn-secondary" th:href="@{/repair-works}">Cancel</a>
+		  </div>
+		</form>
+	  </div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
+	<!--	<script th:src="@{/webjars/5.3.3/js/bootstrap.bundle.min.js}"></script>-->
+	<script th:src="@{/scripts/script.js}"></script>
+  </body>
+</html>
