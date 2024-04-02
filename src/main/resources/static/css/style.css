@@ -5,13 +5,12 @@
 }
 
 body {
-    background-color: #e0e0e0;
+    background-color: #cbcbcb;
 }
 
 label {
     color: black;
 }
-
 
 .action-buttons > a {
     text-decoration: none;
@@ -32,6 +31,14 @@ label {
 
 .btn:not(.btn-outline) {
     color: white;
+}
+
+.btn-outline-secondary {
+    color: black !important;
+}
+
+.btn-outline-secondary:hover {
+    color: white !important;
 }
 
 h1 {

@@ -15,7 +15,8 @@
 			  th:action="@{/repair-works/save}" th:method="POST" th:object="${rw}">
 		  <div class=" mb-3">
 			<label for="workTitle">Work title</label>
-			<input class="form-control mt-1" id="workTitle" placeholder="Work title" required th:field="*{workTitle}"
+			<input class="form-control mt-1" id="workTitle" maxlength="50" placeholder="Work title" required
+				   th:field="*{workTitle}"
 				   th:type="text"/>
 			<div class="invalid-feedback">
 			  Provide a work title.
@@ -51,14 +52,13 @@
 		  </div>
 		  <div class="d-flex gap-2">
 			<button class="btn btn-success" th:type="submit">Register</button>
-			<a class="btn btn-secondary" th:href="@{/repair-works}">Cancel</a>
+			<a class="btn btn btn-outline-secondary" th:href="@{/repair-works}">Cancel</a>
 		  </div>
 		</form>
 	  </div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
-	<!--	<script th:src="@{/webjars/5.3.3/js/bootstrap.bundle.min.js}"></script>-->
 	<script th:src="@{/scripts/script.js}"></script>
   </body>
 </html>

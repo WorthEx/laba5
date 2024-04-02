@@ -17,14 +17,16 @@
 		  <div class="row">
 			<div class="col-md-4 mb-3">
 			  <label for="name">First name</label>
-			  <input class="form-control mt-1" id="name" placeholder="Name" required th:field="*{name}" th:type="text"/>
+			  <input class="form-control mt-1" id="name" maxlength="25" minlength="1" placeholder="Name" required
+					 th:field="*{name}" th:type="text"/>
 			  <div class="invalid-feedback">
 				Provide a name.
 			  </div>
 			</div>
 			<div class="col-md-4 mb-3">
 			  <label for="surname">Surname</label>
-			  <input class="form-control mt-1" id="surname" placeholder="Surname" required th:field="*{surname}"
+			  <input class="form-control mt-1" id="surname" maxlength="25" minlength="1" placeholder="Surname" required
+					 th:field="*{surname}"
 					 th:type="text"/>
 			  <div class="invalid-feedback">
 				Provide a surname.
@@ -32,7 +34,8 @@
 			</div>
 			<div class="col-md-4 mb-3">
 			  <label for="patronymic">Patronymic (optional)</label>
-			  <input class="form-control mt-1" id="patronymic" placeholder="Patronymic" th:field="*{patronymic}"
+			  <input class="form-control mt-1" id="patronymic" maxlength="25" placeholder="Patronymic"
+					 th:field="*{patronymic}"
 					 th:type="text"/>
 			</div>
 		  </div>
@@ -54,7 +57,10 @@
 			  </div>
 			</div>
 		  </div>
-		  <button class="btn btn-success" th:type="submit">Update information</button>
+		  <div class="d-flex gap-2">
+			<button class="btn btn-success" th:type="submit">Update information</button>
+			<a class="btn btn-outline-secondary" th:href="@{/masters}">Cancel</a>
+		  </div>
 		</form>
 	  </div>
 	</div>

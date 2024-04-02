@@ -32,3 +32,7 @@ $(function () {
     const maxDate = year + '-' + month + '-' + day;
     $('#hiring_date').attr('max', maxDate);
 });
+
+function editRowClicked(value, entity) {
+    location.href = "/" + entity + "/edit/" + value;
+}

@@ -13,7 +13,7 @@
 	  <div class="alert alert-success text-center mt-4" th:if="${saveMessage}" th:text="${saveMessage}"/>
 	  <!--/*@thymesVar id="deleteMessage" type="flash message text"*/-->
 	  <div class="alert alert-danger text-center mt-4" th:if="${deleteMessage}" th:text="${deleteMessage}"/>
-	  <table class="table table-bordered user-select-none">
+	  <table class="table table-hover table-bordered user-select-none">
 		<thead class="table-header table-dark">
 		  <tr>
 			<th>ID</th>
@@ -26,16 +26,14 @@
 		</thead>
 		<tbody>
 		  <th:block th:each="rw: ${repairWorks}">
-			<tr>
+			<tr style="cursor: pointer" th:onclick="|editRowClicked(${rw.getId()}, 'repair-works')|">
 			  <td th:text="${rw.getId()}"></td>
 			  <td th:text="${rw.getWorkTitle()}"></td>
 			  <td th:text="${rw.getCost()}"></td>
 			  <td th:text="${rw.getRepairDays()}"></td>
 			  <td th:text="${rw.getMaster().getId()}"></td>
 			  <td class="action-buttons d-flex flex-column gap-1">
-				<a class="btn btn-primary" th:href="@{/masters/edit/{id}(id=${rw.getId()})}"
-				   th:text="Edit"></a>
-				<form th:action="@{/masters/{id}(id=${rw.getId()})}" th:method="DELETE">
+				<form th:action="@{/repair-works/{id}(id=${rw.getId()})}" th:method="DELETE">
 				  <input class="btn btn-danger" th:value="Delete"
 						 type="submit">
 				</form>

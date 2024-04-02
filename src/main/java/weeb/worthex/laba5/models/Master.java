@@ -21,11 +21,11 @@ public class Master {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 45, nullable = false, name = "surname")
+    @Column(length = 25, nullable = false, name = "surname")
     private String surname;
-    @Column(length = 45, nullable = false, name = "name")
+    @Column(length = 25, nullable = false, name = "name")
     private String name;
-    @Column(length = 45, nullable = false, name = "patronymic")
+    @Column(length = 25, name = "patronymic")
     private String patronymic;
     @Column(length = 1, nullable = false, name = "rank")
     private Integer rank;
@@ -44,7 +44,7 @@ public class Master {
     }
 
     public String getShortName() {
-        if (patronymic != null)
+        if (patronymic != null && !patronymic.isEmpty())
             return String.format("%03d |  %s %s. %s. (Rank %d)", id, surname, name.charAt(0), patronymic.charAt(0), rank);
         return String.format("%03d | %s %s (Rank %d)", id, surname, name, rank);
     }
