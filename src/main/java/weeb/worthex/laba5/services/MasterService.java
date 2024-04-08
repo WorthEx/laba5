@@ -26,10 +26,6 @@ public class MasterService {
         masterRepo.save(master);
     }
 
-    public void updateMaster(Master master) {
-        masterRepo.save(master);
-    }
-
     public void deleteMaster(Long id) {
         masterRepo.deleteById(id);
     }

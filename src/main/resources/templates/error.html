@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<meta charset="UTF-8">
+	<title>Oops!</title>
+	<link href="" rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+  </head>
+  <body>
+	<div class="container container-fluid min-vh-100 d-flex flex-column px-5">
+	  <div class="d-flex flex-column flex-grow-1 align-items-center justify-content-center">
+		<h1 class="text-center mb-4 fs-1 fw-bold user-select-none">Something went wrong and it's definitely <span
+			class="text-danger">not</span> our fault!</h1>
+		<a class="text-decoration-none fs-1 fw-normal text-center text-primary home-link"
+		   role="button" th:href="@{/}">Take me home</a>
+	  </div>
+	</div>
+  </body>
+</html>

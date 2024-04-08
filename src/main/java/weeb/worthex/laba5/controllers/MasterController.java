@@ -1,5 +1,6 @@
 package weeb.worthex.laba5.controllers;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,10 +30,13 @@ public class MasterController {
 
     @GetMapping("/edit/{id}")
     public String editMasterForm(@PathVariable Long id, Model model) {
-        model.addAttribute("master", masterService.getById(id));
-        model.addAttribute("pageTitle", "Edit master's data (id: " + id + ")");
-        return "masters/edit";
-
+        try {
+            model.addAttribute("master", masterService.getById(id));
+            model.addAttribute("pageTitle", "Edit master's data (id: " + id + ")");
+            return "masters/edit";
+        } catch (EntityNotFoundException exception) {
+            return "redirect:/error";
+        }
     }
 
     @GetMapping("/new")
@@ -40,7 +44,6 @@ public class MasterController {
         model.addAttribute("master", new Master());
         return "masters/register";
     }
-
 
     @PostMapping("/save")
     public String saveMaster(@ModelAttribute("master") Master master,

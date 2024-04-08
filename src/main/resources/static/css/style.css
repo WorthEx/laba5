@@ -45,3 +45,12 @@ h1 {
     font-family: "Roboto", serif;
     font-weight: 900;
 }
+
+.home-link {
+    transition: all ease .2s;
+}
+
+.home-link:hover {
+    opacity: .6 !important;
+    transition: all ease .2s;
+}

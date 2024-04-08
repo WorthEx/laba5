@@ -1,5 +1,6 @@
 package weeb.worthex.laba5.controllers;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +39,18 @@ public class RepairWorkController {
         return "repairWorks/register";
     }
 
+    @GetMapping("/edit/{id}")
+    public String editRepairWorkForm(@PathVariable Long id, Model model) {
+        try {
+            model.addAttribute("rw", rwService.getById(id));
+            model.addAttribute("masters", masterService.getMasters());
+            model.addAttribute("pageTitle", "Edit repair work's data (id: " + id + ")");
+            return "repairWorks/edit";
+        } catch (EntityNotFoundException exception) {
+            return "redirect:/error";
+        }
+    }
+
     @PostMapping("/save")
     public String saveRepairWork(@ModelAttribute("rw") RepairWork rw,
                                  RedirectAttributes ra) {
@@ -50,7 +63,7 @@ public class RepairWorkController {
     public String deleteRepairWork(@PathVariable("id") Long id,
                                    RedirectAttributes ra) {
         rwService.deleteRepairWork(id);
-        ra.addFlashAttribute("deleteMessage", String.format("Repair work #%d has been saved successfully.", id));
+        ra.addFlashAttribute("deleteMessage", String.format("Repair work #%d has been deleted successfully.", id));
         return "redirect:/repair-works";
     }
 }

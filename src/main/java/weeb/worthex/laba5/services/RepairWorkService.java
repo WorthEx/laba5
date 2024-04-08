@@ -26,10 +26,6 @@ public class RepairWorkService {
         rwRepo.save(repairWork);
     }
 
-    public void updateRepairWork(RepairWork repairWork) {
-        rwRepo.save(repairWork);
-    }
-
     public void deleteRepairWork(Long id) {
         rwRepo.deleteById(id);
     }

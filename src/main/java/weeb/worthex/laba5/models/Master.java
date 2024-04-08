@@ -33,9 +33,8 @@ public class Master {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hiring_date;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "master")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "master", orphanRemoval = true)
     private List<RepairWork> repairWorks;
-
 
     public String getHiringDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
