@@ -19,7 +19,7 @@ public class WorkStage {
     @Column(name = "stage_title", nullable = false)
     private String stage_title;
     @Column(name = "cost", nullable = false)
-    private int cost;
+    private double cost;
 
     @ManyToOne
     @JoinColumn(name = "fk_repair_work_id")

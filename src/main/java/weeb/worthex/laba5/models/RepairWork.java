@@ -21,7 +21,7 @@ public class RepairWork {
     @Column(length = 45, nullable = false, name = "work_title")
     private String workTitle;
     @Column(length = 45, nullable = false, name = "cost")
-    private Float cost;
+    private double cost;
     @Column(length = 10, nullable = false, name = "repair_days")
     private Long repairDays;
 
@@ -31,4 +31,8 @@ public class RepairWork {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "repairWork")
     private List<WorkStage> workStages;
+
+    public String getShortName() {
+        return String.format("%03d | %s | %f | Repair days: %d | Master: %d", id, workTitle, cost, repairDays, master.getId());
+    }
 }

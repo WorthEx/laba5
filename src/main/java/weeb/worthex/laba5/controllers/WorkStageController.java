@@ -54,9 +54,14 @@ public class WorkStageController {
     @PostMapping("/save")
     public String saveWorkStage(@ModelAttribute("ws") WorkStage ws,
                                 RedirectAttributes ra) {
-        wsService.saveWorkStage(ws);
-        ra.addFlashAttribute("saveMessage", String.format("Work stage #%d has been saved successfully.", ws.getId()));
-        return "redirect:/repair-works";
+        try {
+            wsService.saveWorkStage(ws);
+            ra.addFlashAttribute("saveMessage", String.format("Work stage #%d has been saved successfully.", ws.getId()));
+            return "redirect:/work-stages";
+        } catch (IllegalArgumentException exception) {
+            ra.addFlashAttribute("errorMessage", "Work stage couldn't be added. Check if the cost doesn't exceed repair work cost.");
+            return "redirect:/work-stages";
+        }
     }
 
     @PostMapping("/{id}")
@@ -64,6 +69,6 @@ public class WorkStageController {
                                   RedirectAttributes ra) {
         wsService.deleteWorkStage(id);
         ra.addFlashAttribute("deleteMessage", String.format("Work stage #%d has been deleted successfully.", id));
-        return "redirect:/repair-works";
+        return "redirect:/work-stages";
     }
 }

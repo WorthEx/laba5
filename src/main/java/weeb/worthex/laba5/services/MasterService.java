@@ -19,7 +19,7 @@ public class MasterService {
     }
 
     public List<Master> getMasters() {
-        return masterRepo.findAll();
+        return masterRepo.findAllByOrderByIdAsc();
     }
 
     public void saveMaster(Master master) {
