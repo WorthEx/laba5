@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<meta charset="UTF-8">
+	<title>Add work stage</title>
+	<link href="" rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+  </head>
+  <body>
+	<div class="container container-fluid min-vh-100 d-flex flex-column px-5">
+	  <div class="d-flex flex-column flex-grow-1 align-items-center justify-content-center">
+		<h1 class="text-center fw-normal user-select-none" th:text="${pageTitle}"></h1>
+		<form class="needs-validation w-100"
+			  method="post" novalidate
+			  th:action="@{/work-stages/save}" th:method="POST" th:object="${ws}">
+		  <input th:field="*{id}" type="hidden">
+		  <input id="oldCost" name="oldCost" th:value="${oldCost}" type="hidden">
+		  <div class=" mb-3">
+			<label for="stageTitle">Stage title</label>
+			<input class="form-control mt-1" id="stageTitle" maxlength="50" placeholder="Stage title" required
+				   th:field="*{stage_title}"
+				   th:type="text"/>
+			<div class="invalid-feedback">
+			  Provide a stage title.
+			</div>
+		  </div>
+		  <div class=" mb-3">
+			<label for="repairWork">Repair work</label>
+			<select aria-label="Default select example" class="form-select mt-1" id="repairWork" required
+					th:field="*{repairWork}">
+			  <option selected value="">Select repair work</option>
+			  <option th:each="rw : ${repairWorks}" th:text="${rw.getShortName()}"
+					  th:value="${rw.getId()}"></option>
+			</select>
+			<div class="invalid-feedback">
+			  Please select a registered master.
+			</div>
+		  </div>
+		  <div class=" mb-3">
+			<label for="cost">Cost</label>
+			<input class="form-control mt-1" id="cost" min="1" placeholder="Cost($)" required th:field="*{cost}"
+				   type="number"/>
+			<div class="invalid-feedback">
+			  Provide a cost of work stage. Make sure it won't exceed the total cost of repair work.
+			</div>
+		  </div>
+		  <div class="d-flex gap-2">
+			<button class="btn btn-success" th:type="submit">Update information</button>
+			<a class="btn btn btn-outline-secondary" th:href="@{/work-stages}">Cancel</a>
+		  </div>
+		</form>
+	  </div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
+	<script th:src="@{/scripts/script.js}"></script>
+  </body>
+</html>

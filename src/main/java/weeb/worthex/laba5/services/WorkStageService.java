@@ -26,15 +26,17 @@ public class WorkStageService {
         return wsRepo.findAll();
     }
 
-    public void saveWorkStage(WorkStage ws) {
+    public void saveWorkStage(WorkStage ws, double oldCost) {
         RepairWork repairWork = rwRepo.findById(ws.getRepairWork().getId()).orElse(null);
         if (repairWork == null) {
             throw new IllegalArgumentException("Repair work with such id couldn't be found!");
         }
         double totalStagesCost = wsRepo.getTotalStagesCostByRepairWorkId(repairWork.getId()) != null ?
                 wsRepo.getTotalStagesCostByRepairWorkId(repairWork.getId()) : 0;
-        System.out.println(totalStagesCost);
-        if (totalStagesCost + ws.getCost() > repairWork.getCost()) {
+        System.out.println();
+        System.out.println(totalStagesCost + ws.getCost());
+        System.out.println();
+        if (totalStagesCost - oldCost + ws.getCost() > repairWork.getCost()) {
             throw new IllegalArgumentException("The sum of the cost of the stages exceeds the total cost of the work");
         }
         wsRepo.save(ws);

@@ -33,6 +33,6 @@ public class RepairWork {
     private List<WorkStage> workStages;
 
     public String getShortName() {
-        return String.format("%03d | %s | %f | Repair days: %d | Master: %d", id, workTitle, cost, repairDays, master.getId());
+        return String.format("%03d | %s | %f | Repair days: %d | Master: %s %s.", id, workTitle, cost, repairDays, master.getSurname(), master.getName().charAt(0));
     }
 }

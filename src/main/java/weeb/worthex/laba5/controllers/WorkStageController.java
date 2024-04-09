@@ -44,6 +44,7 @@ public class WorkStageController {
         try {
             model.addAttribute("ws", wsService.getById(id));
             model.addAttribute("repairWorks", rwService.getRepairWorks());
+            model.addAttribute("oldCost", wsService.getById(id).getCost());
             model.addAttribute("pageTitle", "Edit work stage's data (id: " + id + ")");
             return "workStages/edit";
         } catch (EntityNotFoundException exception) {
@@ -53,9 +54,10 @@ public class WorkStageController {
 
     @PostMapping("/save")
     public String saveWorkStage(@ModelAttribute("ws") WorkStage ws,
+                                @ModelAttribute("oldCost") double oldCost,
                                 RedirectAttributes ra) {
         try {
-            wsService.saveWorkStage(ws);
+            wsService.saveWorkStage(ws, oldCost);
             ra.addFlashAttribute("saveMessage", String.format("Work stage #%d has been saved successfully.", ws.getId()));
             return "redirect:/work-stages";
         } catch (IllegalArgumentException exception) {
