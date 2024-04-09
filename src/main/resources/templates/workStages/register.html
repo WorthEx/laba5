@@ -13,7 +13,8 @@
 		<form class="needs-validation w-100"
 			  method="post" novalidate
 			  th:action="@{/work-stages/save}" th:method="POST" th:object="${ws}">
-		  <div class=" mb-3">
+			<input id="oldCost" name="oldCost" th:value="${oldCost}" type="hidden">
+			<div class=" mb-3">
 			<label for="stageTitle">Stage title</label>
 			<input class="form-control mt-1" id="stageTitle" maxlength="50" placeholder="Stage title" required
 				   th:field="*{stage_title}"

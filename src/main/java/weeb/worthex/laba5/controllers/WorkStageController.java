@@ -35,6 +35,7 @@ public class WorkStageController {
     @GetMapping("/new")
     public String registerWorkStage(Model model) {
         model.addAttribute("ws", new WorkStage());
+        model.addAttribute("oldCost",  0.0);
         model.addAttribute("repairWorks", rwService.getRepairWorks());
         return "workStages/register";
     }

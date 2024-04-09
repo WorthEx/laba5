@@ -33,9 +33,6 @@ public class WorkStageService {
         }
         double totalStagesCost = wsRepo.getTotalStagesCostByRepairWorkId(repairWork.getId()) != null ?
                 wsRepo.getTotalStagesCostByRepairWorkId(repairWork.getId()) : 0;
-        System.out.println();
-        System.out.println(totalStagesCost + ws.getCost());
-        System.out.println();
         if (totalStagesCost - oldCost + ws.getCost() > repairWork.getCost()) {
             throw new IllegalArgumentException("The sum of the cost of the stages exceeds the total cost of the work");
         }
